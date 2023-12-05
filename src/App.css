@@ -1,0 +1,42 @@
+.tile {
+  height: 100px;
+  width: 100px;
+  padding: 20px;
+  border: 2px solid #61dafb; /* Use a color of your choice */
+  color: #61dafb; /* Use a color that contrasts well with your background */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #282c34; /* Use a background color that contrasts with your text */
+  font-size: 18px; /* Adjust the font size */
+  font-weight: bold; /* Adjust the font weight */
+  transition: all 0.3s ease; /* Add a smooth transition effect */
+}
+
+.tile:hover {
+  transform: scale(1.1); /* Add a scale effect on hover */
+  /* background-color: #61dafb; Change the background color on hover */
+  color: #282c34; /* Change the text color on hover */
+}
+
+.card-holder {
+  display: flex;
+  padding-bottom: 150px;
+}
+
+.parentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #15202b;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  padding-bottom: 100px;
+}
