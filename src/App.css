@@ -84,3 +84,59 @@
   color: white;
   font-size: 20px;
 }
+
+/*  */
+/* Add this media query at the end of your CSS file */
+@media (min-width: 601px) and (max-width: 768px) {
+  .parentContainer {
+    padding: 20px; /* Add some padding to the parent container */
+  }
+
+  .title {
+    font-size: 30px;
+    padding-bottom: 50px;
+  }
+
+  .tile {
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .card-holder {
+    flex-direction: column; /* Change flex direction to column for smaller screens */
+    margin-bottom: 50px;
+  }
+
+  .resetButton {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .tries {
+    font-size: 16px;
+  }
+}
+
+/* Add this media query at the end of your CSS file */
+@media (min-width: 200px) and (max-width: 600px) {
+  .tile {
+    width: 48%;
+    margin: 1%; /* Add a small margin between tiles */
+  }
+
+  .parentContainer {
+    text-align: center;
+    height: 100%;
+  }
+
+  .card-holder {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
