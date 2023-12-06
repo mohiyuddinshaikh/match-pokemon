@@ -164,7 +164,9 @@ function App() {
   return (
     <div className="parentContainer">
       <Fade bottom>
-        <div className="title">Match The Pok&eacute;mon !!</div>
+        <div className="title">
+          {isGameComplete ? "You win !!!" : `Match The Pokémon !!`}
+        </div>
       </Fade>
       <Zoom top>
         <div className={`card-holder ${isGameComplete ? "scale" : ""}`}>
@@ -172,19 +174,26 @@ function App() {
             return (
               <div
                 key={index}
-                className="tile"
+                className={`tile ${tile.isOpen ? "flipped" : ""}`}
                 onClick={() => handleTileClick(tile)}
               >
-                {tile?.isOpen ? (
+                <div className="tile-face tile-face-back">
                   <img
                     alt={tile?.name}
                     src={tile?.img}
                     height={100}
                     width={100}
                   />
-                ) : (
-                  <img alt={"Pokemon"} src={Pokemon} height={100} width={100} />
-                )}
+                </div>
+                <div className="tile-face tile-face-front">
+                  <img
+                    alt={tile?.name}
+                    src={Pokemon}
+                    height={100}
+                    width={100}
+                    className="back"
+                  />
+                </div>
               </div>
             );
           })}
