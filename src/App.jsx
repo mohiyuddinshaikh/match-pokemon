@@ -9,8 +9,10 @@ import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Zoom from "react-reveal/Zoom";
 import Fade from "react-reveal/Fade";
+import ReactGA from "react-ga";
 
 function App() {
+  ReactGA.initialize("G-C4XQCVGCL5");
   const { width, height } = useWindowSize();
   const INITIAL_TILES = [
     {
