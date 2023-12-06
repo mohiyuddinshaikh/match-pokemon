@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Pikachu from "./assets/pikachu.png";
 import Charizard from "./assets/charizard.png";
 import Squirtle from "./assets/squirtle.png";
 import Bulbasaur from "./assets/bulbasaur.png";
 import Pokemon from "./assets/pokemon.png";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Zoom from "react-reveal/Zoom";
+import Fade from "react-reveal/Fade";
 
 function App() {
+  const { width, height } = useWindowSize();
   const INITIAL_TILES = [
     {
       name: "A",
@@ -66,9 +71,16 @@ function App() {
     },
   ];
 
-  const [tiles, setTiles] = useState(INITIAL_TILES);
+  useEffect(() => {
+    shuffleTiles();
+  }, []);
+
+  const [tiles, setTiles] = useState(null);
+  const [tries, setTries] = useState(0);
+  const [isGameComplete, setIsGameComplete] = useState(false);
 
   const compareTiles = (selectedTile, openTile) => {
+    setTries((old) => old + 1);
     if (selectedTile?.name === openTile?.name) {
       let tempTiles = [...tiles];
       tempTiles.forEach((element) => {
@@ -97,6 +109,16 @@ function App() {
       }, 1000);
     }
   };
+
+  const checkIfGameComplete = () => {
+    return tiles?.every((tile) => tile.isOpen && tile.isMatched);
+  };
+
+  useEffect(() => {
+    if (checkIfGameComplete()) {
+      setIsGameComplete(true);
+    }
+  }, [tiles]);
 
   const openSelectedTile = (selectedTile) => {
     const tempTiles = [...tiles];
@@ -128,31 +150,53 @@ function App() {
     }
   };
 
+  const resetGame = () => {
+    shuffleTiles();
+    setTries(0);
+    setIsGameComplete(false);
+  };
+
+  const shuffleTiles = () => {
+    const shuffledTiles = INITIAL_TILES.sort(() => Math.random() - 0.5);
+    setTiles(shuffledTiles);
+  };
+
   return (
     <div className="parentContainer">
-      <div className="title">Match The Pokemons !</div>
-      <div className="card-holder">
-        {tiles?.map((tile, index) => {
-          return (
-            <div
-              key={index}
-              className="tile"
-              onClick={() => handleTileClick(tile)}
-            >
-              {tile?.isOpen ? (
-                <img
-                  alt={tile?.name}
-                  src={tile?.img}
-                  height={100}
-                  width={100}
-                />
-              ) : (
-                <img alt={"Pokemon"} src={Pokemon} height={100} width={100} />
-              )}
-            </div>
-          );
-        })}
-      </div>
+      <Fade bottom>
+        <div className="title">Match The Pok&eacute;mon !!</div>
+      </Fade>
+      <Zoom top>
+        <div className={`card-holder ${isGameComplete ? "scale" : ""}`}>
+          {tiles?.map((tile, index) => {
+            return (
+              <div
+                key={index}
+                className="tile"
+                onClick={() => handleTileClick(tile)}
+              >
+                {tile?.isOpen ? (
+                  <img
+                    alt={tile?.name}
+                    src={tile?.img}
+                    height={100}
+                    width={100}
+                  />
+                ) : (
+                  <img alt={"Pokemon"} src={Pokemon} height={100} width={100} />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </Zoom>
+      <Fade bottom>
+        <div className="tries">Tries: {tries}</div>
+        <button className="resetButton" onClick={resetGame}>
+          Reset Game
+        </button>
+      </Fade>
+      {isGameComplete ? <Confetti width={width} height={height} /> : ""}
     </div>
   );
 }

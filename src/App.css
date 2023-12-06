@@ -2,27 +2,32 @@
   height: 100px;
   width: 100px;
   padding: 20px;
-  border: 2px solid #61dafb; /* Use a color of your choice */
-  color: #61dafb; /* Use a color that contrasts well with your background */
+  border: 2px solid #61dafb;
+  color: #61dafb;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #282c34; /* Use a background color that contrasts with your text */
-  font-size: 18px; /* Adjust the font size */
-  font-weight: bold; /* Adjust the font weight */
-  transition: all 0.3s ease; /* Add a smooth transition effect */
+  background-color: #282c34;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .tile:hover {
-  transform: scale(1.1); /* Add a scale effect on hover */
-  /* background-color: #61dafb; Change the background color on hover */
-  color: #282c34; /* Change the text color on hover */
+  transform: scale(1.1);
+  color: #282c34;
 }
 
 .card-holder {
   display: flex;
-  padding-bottom: 150px;
+  margin-bottom: 150px;
+}
+
+.scale {
+  transform: scale(1.1);
+  transition: transform 3s ease-in-out !important;
+  box-shadow: 0 0 30px 15px #fff, 0 0 50px 30px #f0f, 0 0 70px 45px #0ff;
 }
 
 .parentContainer {
@@ -39,4 +44,25 @@
   font-weight: bold;
   color: white;
   padding-bottom: 100px;
+}
+
+.resetButton {
+  background-color: #61dafb;
+  color: black;
+  border: 2px solid #61dafb;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.resetButton:hover {
+  background-color: #282c34;
+  color: #61dafb;
+}
+
+.tries {
+  color: white;
+  font-size: 20px;
 }
